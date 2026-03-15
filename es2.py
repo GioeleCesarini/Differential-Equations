@@ -1,17 +1,3 @@
-"""
-Si vuole risolvere numericamente il moto di un proiettile in aria usando un metodo del second’ordine.
-
-L’equazione del moto è:
-
-    m * d^2r/dt^2 = - k * v - g * versor{y}
-    con: v0 = (v0 * costheta, v0 * sintheta)
-         r0 = (0, 0)
-    
-a) Si crei una funzione che, per un k scelto dall’utente, ritorni la gittata
-b) Si determini per un k fissato l’angolo θmax per cui si ottiene gittata massima
-c) Si grafichi θmax in funzione di k nell’intervallo [0, 0.4]
-"""
-
 # L'idea è usare RK2 separando l'equazione del moto in due di ordine 1
 
 import math as ma
@@ -49,8 +35,6 @@ def rk2_step(t, X, dt):
     k2 = f(t + 0.5 * dt, X + 0.5 * dt * k1)
     return X + dt * k2
     
-""" (a), (b) """
-
 # GITTATA
 def gittata(k, theta):
     
@@ -89,8 +73,6 @@ v0 = 10 # => scelgo v0 = 10 m/s
 
 # ----------------------------
 
-""" (b) """
-
 # np.linspace(start, stop, num) => escludo gli estremi => crea una lista
 theta_values = np.linspace(0.01, ma.pi/2 - 0.01, 1000)
 
@@ -107,12 +89,8 @@ theta_max = theta_values[index_gittata_max]
 theta_max_gradi = theta_max * 180/(ma.pi)
 
 print(f"Il valore di theta per massimizzare la gittata con k appena scelto dall'utente è {theta_max_gradi:.1f}°")
-
-""" (a) """
     
 print(f"La gittata per: k = {k:.1f}, è: {gittata(k, theta_max):.3f}m")
-
-""" (c) """
 
 print(f"Aspetta il grafico di θ_max vs k variabile ...")
 
